@@ -78,7 +78,7 @@ namespace AlarmClock
             return true;
         }
 
-        internal void TickTock()
+        public bool TickTock()
         {
             throw new NotImplementedException();
         }

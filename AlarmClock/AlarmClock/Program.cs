@@ -17,6 +17,7 @@ namespace AlarmClock
 
             //skapa variabler
             string showTestTime = "";
+            bool testAlarm = false;
 
             try
             {
@@ -114,6 +115,8 @@ namespace AlarmClock
                      Console.WriteLine(showTestTime);
                  }
 
+                 //skriv linje
+                 Console.WriteLine(theLine.HorizontalLine);
              }
              catch 
              {
@@ -121,6 +124,58 @@ namespace AlarmClock
                  return;
              }
 
+            //Testar larmet...
+             try
+             {
+                 //Meddela!
+                
+                 ViewTestHeader("Test 5.");
+                
+                 ViewTestHeader("Ställer klockan till 6:12 och alarmet vid 6:15... Klockan kommer att gå i sex minuter");
+               
+                 //Sätter klockan till 6:12 och larmet 6:15
+                 myAlarm = new AlarmClock( 6, 12, 6, 15);
+
+                 //Anropar TickTock 6 gånger...
+                 for (int i = 0; i < 6; i++)
+               
+                 {
+                     testAlarm = myAlarm.TickTock();
+                     showTestTime = myAlarm.ToString();
+                     if (testAlarm == true)
+                     {
+                         Console.BackgroundColor = Console.BackgroundColor;
+                         Console.WriteLine("      {0}     Beep! Beep! Beep!", showTestTime);
+                         Console.ResetColor();
+                     }
+                     else
+                     {
+                         Console.WriteLine("      {0}", showTestTime);
+                     }
+               
+                 }
+
+                 //skriv linje
+                 Console.WriteLine(theLine.HorizontalLine);
+             }
+             catch 
+             {
+                 ViewErrorMessage("Nåt gick fel med Test 5!");
+                 return;
+             }
+
+            //Testar egenskaperna...
+
+             try
+             {
+                 myAlarm = new AlarmClock();
+                 myAlarm.Hour = 27;
+             }
+             catch
+             {
+                 
+                 throw;
+             }
 
         }
         private static void ViewErrorMessage(string message)

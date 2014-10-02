@@ -13,6 +13,21 @@ namespace AlarmClock
         private int _hour;
         private int _minute;
 
+        public AlarmClock() : this(0,0)
+        {
+            //Ät lite nudlar...
+        }
+        public AlarmClock(int hour, int minute) : this(hour,minute,0,0)
+        {
+            // ...med köttbullar, det är gott.
+        }
+        public AlarmClock(int hour, int minute, int alarmhour, int alarmminute)
+        {
+            Hour = hour;
+            Minute = minute;
+            AlarmHour = alarmhour;
+            AlarmMinute = alarmminute;
+        }
         public int AlarmHour
         {
             get { return _alarmHour; }
@@ -76,6 +91,15 @@ namespace AlarmClock
                 return false;
             }
             return true;
+        }
+        public string ToString()
+        {
+
+            if (_minute < 10)
+            {
+
+            }
+            throw new NotImplementedException();
         }
 
         public bool TickTock()

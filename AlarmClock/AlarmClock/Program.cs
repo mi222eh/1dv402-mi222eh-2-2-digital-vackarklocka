@@ -189,7 +189,7 @@ namespace AlarmClock
              }
              catch 
              {
-                 ViewTestHeader("Undantag kastades då minuten sattes till 66...")
+                 ViewTestHeader("Undantag kastades då minuten sattes till 66...");
              }
 
             //test av alarmtimmen
@@ -218,7 +218,38 @@ namespace AlarmClock
 	        }
             //Skriv linje
             Console.WriteLine(theLine.HorizontalLine);
+            
+            //Test av konstruktorerna så undantag kastas då fel värden tilldelas
+            try 
+            {	        
+		        myAlarm = new AlarmClock(24, 60, -1, -1);
+                if (myAlarm.Hour < 0 || myAlarm.Hour > 23){
+                    ViewErrorMessage("Timmen är utanför intervallet 0-23!");
+                }
+                else if (myAlarm.AlarmHour < 0 || myAlarm.AlarmHour > 23)
+                {
+                    ViewErrorMessage("AlarmTimmen är utanför intervallet 0-23!");
+                }
+                else if (myAlarm.Minute < 0 || myAlarm.Minute > 23)
+                {
+                    ViewErrorMessage("Minuten är utanför intervallet 0-23!");
+                }
+                else if (myAlarm.AlarmMinute < 0 || myAlarm.AlarmMinute > 23)
+                {
+                    ViewErrorMessage("AlarmMinuten är utanför intervallet 0-23!");
+                }
+                else
+                {
+                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar!");
+                }
+                return;
 
+            }
+            catch (Exception)
+            {
+		
+	            ViewTestHeader("Ett undantag kastas då olika fält tilldelas fel värden");
+            }
 
         }
         private static void ViewErrorMessage(string message)

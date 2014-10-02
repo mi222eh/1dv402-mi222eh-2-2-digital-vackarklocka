@@ -23,6 +23,7 @@ namespace AlarmClock
         }
         public AlarmClock(int hour, int minute, int alarmhour, int alarmminute)
         {
+            //Tilldela värden som togs emot
             Hour = hour;
             Minute = minute;
             AlarmHour = alarmhour;
@@ -78,6 +79,7 @@ namespace AlarmClock
 
         private bool CheckHour(int hour)
         {
+            //Kontrollerar intervallen på timmen...
             if (hour < 0 || hour > 23)
             {
                 return false;
@@ -86,6 +88,7 @@ namespace AlarmClock
         }
         private bool CheckMinute(int minute)
         {
+            //Kontrollerar intervallen på minuten...
             if (minute < 0 || minute > 59)
             {
                 return false;
@@ -94,12 +97,13 @@ namespace AlarmClock
         }
         public string ToString()
         {
-
-            if (_minute < 10)
-            {
-
-            }
-            throw new NotImplementedException();
+            //deklarera variabel till strängen
+            string timeToText;  
+         
+            //Lagra sträng beroende av olika formfaktorer (ensiffriga minuter ska ha en nolla framför sig)...
+            timeToText = string.Format("          {0,1}:{1}{2,1}   ({3,1}:{4}{5})",_hour,(_minute < 10? "0":""),_minute, _alarmHour,(_alarmMinute < 10? "0":""), _alarmMinute);
+            
+            return timeToText;
         }
 
         public bool TickTock()

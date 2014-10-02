@@ -47,7 +47,7 @@ namespace AlarmClock
 	          {	        
 		            //Skriv meddelande
                     ViewTestHeader("Test 2.");
-                    ViewTestHeader("Test av konstruktor med två parametrar, /(9,42/)");
+                    ViewTestHeader("Test av konstruktor med två parametrar, (9,42)");
             
                     //TEST 2! med två parametrar insället...
                     myAlarm = new AlarmClock(9, 42);
@@ -63,7 +63,7 @@ namespace AlarmClock
 	        }
 	        catch
 	        {
-                ViewErrorMessage("Nåt gick snätt med Test 2");
+                ViewErrorMessage("Nåt gick snätt med Test 2!");
 		        return;
 	        }
 

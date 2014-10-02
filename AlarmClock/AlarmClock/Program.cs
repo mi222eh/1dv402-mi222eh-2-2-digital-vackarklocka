@@ -165,17 +165,60 @@ namespace AlarmClock
              }
 
             //Testar egenskaperna...
-
+             ViewTestHeader("Test 6.");
+             ViewTestHeader("Testar egenskaperna så att dom kastar ut undantag när ogiltiga värden ställs");
+             myAlarm = new AlarmClock();
+            //test av timmen
              try
              {
-                 myAlarm = new AlarmClock();
                  myAlarm.Hour = 27;
+                 ViewErrorMessage("Undantag kastades inte då timmen blev satt till 27!");
+                 return;
              }
              catch
              {
-                 
-                 throw;
+                 ViewTestHeader("Undantag kastades då timmen blev satt till 27...");
              }
+
+            //test av minuten
+             try
+             {
+                 myAlarm.Minute = 66;
+                 ViewErrorMessage("Undantag kastades inte då minuten sattes till 66!");
+                 return;
+             }
+             catch 
+             {
+                 ViewTestHeader("Undantag kastades då minuten sattes till 66...")
+             }
+
+            //test av alarmtimmen
+            try 	
+            {	
+                myAlarm.AlarmHour = 27;
+    	        ViewErrorMessage("Undantag kastades inte då alarmtimmen sattes till 27!");
+                return;
+            }
+            catch 
+            {	
+                ViewTestHeader("Undantagkastades då alarmtimmen sattes till 27...");
+	        }
+
+            //test av alarmminuten
+            try 
+	        {	        
+		        myAlarm.AlarmMinute = 80;
+                ViewErrorMessage("Undantag kastades inte då alarmminuten sattes till 80!");
+                return;
+	        }
+	        catch 
+	        {
+		        ViewTestHeader("Undantag kastades då alarmminuten sattes till 80...");
+		           
+	        }
+            //Skriv linje
+            Console.WriteLine(theLine.HorizontalLine);
+
 
         }
         private static void ViewErrorMessage(string message)

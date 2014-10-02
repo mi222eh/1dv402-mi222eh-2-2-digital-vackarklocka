@@ -8,7 +8,7 @@ namespace AlarmClock
 {
     class Program
     {
-        private string HorizontalLine = "----------------------------------------------------------";
+        private string HorizontalLine = "─────────────────────────────────────────────────────────────────────────────────────────────────────";
         static void Main(string[] args)
         {
             //Skapa referenser
@@ -145,7 +145,7 @@ namespace AlarmClock
                      if (testAlarm == true)
                      {
                          Console.BackgroundColor = ConsoleColor.Blue;
-                         Console.WriteLine("{0}     Beep! Beep! Beep!", showTestTime);
+                         Console.WriteLine("{0}     ♪♫Beep!♫♪ ♫♫♪♪Beep!♪♪♪", showTestTime);
                          Console.ResetColor();
                      }
                      else
@@ -260,6 +260,7 @@ namespace AlarmClock
             }
 
             ViewTestHeader("Färdigtestat!");
+            Console.WriteLine(theLine.HorizontalLine);
 
         }
         private static void ViewErrorMessage(string message)
@@ -277,7 +278,23 @@ namespace AlarmClock
         }
         private static void Run (AlarmClock ac, int minutes)
         {
+            //deklarera variabler
+            bool startAlarm = false;
 
+            //visa titel
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.WriteLine("──────────────────────────────────────────────────────────────");
+            Console.WriteLine("────────────────Klocka──────Version─1.0───────────────────────");
+            Console.WriteLine("──────────────────────────────────────────────────────────────");
+            Console.ResetColor();
+
+            //gör objekt och tilldela lite värden
+            ac = new AlarmClock(12,0,13,13);
+            for (int i = 0; i < minutes; i++)
+            {
+                startAlarm = ac.TickTock();
+
+            }
         }
     }
 }

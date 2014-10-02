@@ -261,6 +261,11 @@ namespace AlarmClock
 
             ViewTestHeader("Färdigtestat!");
             Console.WriteLine(theLine.HorizontalLine);
+            Console.WriteLine("Starta klockan? Escape avslutar programmet");
+            if (Console.ReadKey(true).Key != ConsoleKey.Escape)
+            {
+                run(new AlarmClock(12, 0, 13, 13), 80);
+            }
 
         }
         private static void ViewErrorMessage(string message)
@@ -276,7 +281,7 @@ namespace AlarmClock
         {
             Console.WriteLine(message);
         }
-        private static void Run (AlarmClock ac, int minutes)
+        private static void run (AlarmClock ac, int minutes)
         {
             //deklarera variabler
             bool startAlarm = false;
@@ -288,11 +293,19 @@ namespace AlarmClock
             Console.WriteLine("──────────────────────────────────────────────────────────────");
             Console.ResetColor();
 
-            //gör objekt och tilldela lite värden
-            ac = new AlarmClock(12,0,13,13);
             for (int i = 0; i < minutes; i++)
             {
                 startAlarm = ac.TickTock();
+                if (startAlarm)
+                {
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("{0}  BEEP! BEEP! BEEP!", ac.ToString());
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.WriteLine(ac.ToString());
+                }
 
             }
         }

@@ -70,10 +70,11 @@ namespace AlarmClock
             get { return _minute;}
             set
             {
-                if (CheckHour(value) == false)
+                if (CheckMinute(value) == false)
                 {
                     throw new ArgumentException();
                 }
+                _minute = value;
             }
         }
 
@@ -101,14 +102,35 @@ namespace AlarmClock
             string timeToText;  
          
             //Lagra sträng beroende av olika formfaktorer (ensiffriga minuter ska ha en nolla framför sig)...
-            timeToText = string.Format("          {0,1}:{1}{2,1}   ({3,1}:{4}{5})",_hour,(_minute < 10? "0":""),_minute, _alarmHour,(_alarmMinute < 10? "0":""), _alarmMinute);
+            timeToText = string.Format("          {0,2}:{1}{2}   ({3}:{4}{5})",_hour,(_minute < 10? "0":""),_minute, _alarmHour,(_alarmMinute < 10? "0":""), _alarmMinute);
             
             return timeToText;
         }
 
         public bool TickTock()
         {
-            throw new NotImplementedException();
+            //undersök minuten...
+            if (_minute + 1 > 59)
+            {
+                Minute = 0;
+                if (_hour + 1 > 23)
+                {
+                    Hour = 0;
+                }
+                else
+                {
+                    Hour++;
+                }
+            }
+            else
+            {
+                Minute++;
+            }
+            if (_hour == _alarmHour && _minute == _alarmMinute)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

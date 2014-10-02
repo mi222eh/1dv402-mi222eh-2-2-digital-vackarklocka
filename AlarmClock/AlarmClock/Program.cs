@@ -47,7 +47,7 @@ namespace AlarmClock
 	          {	        
 		            //Skriv meddelande
                     ViewTestHeader("Test 2.");
-                    ViewTestHeader("Test av konstruktor med två parametrar, (9,42)");
+                    ViewTestHeader("Test av konstruktor med två parametrar --> (9,42)");
             
                     //TEST 2! med två parametrar insället...
                     myAlarm = new AlarmClock(9, 42);
@@ -71,7 +71,7 @@ namespace AlarmClock
              {
                  //meddela
                  ViewTestHeader("Test 3.");
-                 ViewTestHeader("Test av konstruktor med fyra parametrar, /(13, 24, 7, 35");
+                 ViewTestHeader("Test av konstruktor med fyra parametrar--> (13, 24, 7, 35)");
 
                  //test 3! med fyra parametrar...
                  myAlarm = new AlarmClock(13, 24, 7, 35);
@@ -144,13 +144,13 @@ namespace AlarmClock
                      showTestTime = myAlarm.ToString();
                      if (testAlarm == true)
                      {
-                         Console.BackgroundColor = Console.BackgroundColor;
-                         Console.WriteLine("      {0}     Beep! Beep! Beep!", showTestTime);
+                         Console.BackgroundColor = ConsoleColor.Blue;
+                         Console.WriteLine("{0}     Beep! Beep! Beep!", showTestTime);
                          Console.ResetColor();
                      }
                      else
                      {
-                         Console.WriteLine("      {0}", showTestTime);
+                         Console.WriteLine("{0}", showTestTime);
                      }
                
                  }
@@ -167,6 +167,7 @@ namespace AlarmClock
             //Testar egenskaperna...
              ViewTestHeader("Test 6.");
              ViewTestHeader("Testar egenskaperna så att dom kastar ut undantag när ogiltiga värden ställs");
+             Console.WriteLine();
              myAlarm = new AlarmClock();
             //test av timmen
              try
@@ -178,6 +179,7 @@ namespace AlarmClock
              catch
              {
                  ViewTestHeader("Undantag kastades då timmen blev satt till 27...");
+                 Console.WriteLine();
              }
 
             //test av minuten
@@ -190,6 +192,7 @@ namespace AlarmClock
              catch 
              {
                  ViewTestHeader("Undantag kastades då minuten sattes till 66...");
+                 Console.WriteLine();
              }
 
             //test av alarmtimmen
@@ -201,7 +204,8 @@ namespace AlarmClock
             }
             catch 
             {	
-                ViewTestHeader("Undantagkastades då alarmtimmen sattes till 27...");
+                ViewTestHeader("Undantag kastades då alarmtimmen sattes till 27...");
+                Console.WriteLine();
 	        }
 
             //test av alarmminuten
@@ -214,6 +218,7 @@ namespace AlarmClock
 	        catch 
 	        {
 		        ViewTestHeader("Undantag kastades då alarmminuten sattes till 80...");
+                Console.WriteLine();
 		           
 	        }
             //Skriv linje
@@ -221,7 +226,10 @@ namespace AlarmClock
             
             //Test av konstruktorerna så undantag kastas då fel värden tilldelas
             try 
-            {	        
+            {
+                ViewTestHeader("Test 7.");
+                ViewTestHeader("Testar om det kastas undantag när konstruktorn får fel värden");
+                Console.WriteLine();
 		        myAlarm = new AlarmClock(24, 60, -1, -1);
                 if (myAlarm.Hour < 0 || myAlarm.Hour > 23){
                     ViewErrorMessage("Timmen är utanför intervallet 0-23!");
@@ -245,25 +253,31 @@ namespace AlarmClock
                 return;
 
             }
-            catch (Exception)
+            catch 
             {
 		
-	            ViewTestHeader("Ett undantag kastas då olika fält tilldelas fel värden");
+	            ViewTestHeader("Ett undantag kastas då olika fält tilldelas fel värden...");
             }
+
+            ViewTestHeader("Färdigtestat!");
 
         }
         private static void ViewErrorMessage(string message)
-    {
+        {
 
         Console.BackgroundColor = ConsoleColor.Red;
         Console.WriteLine(message);
         Console.ResetColor();
 
 
-    }
+        }
         private static void ViewTestHeader(string message)
         {
             Console.WriteLine(message);
+        }
+        private static void Run (AlarmClock ac, int minutes)
+        {
+
         }
     }
 }

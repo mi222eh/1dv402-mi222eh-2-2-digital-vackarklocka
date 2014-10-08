@@ -225,38 +225,74 @@ namespace AlarmClock
             Console.WriteLine(theLine.HorizontalLine);
             
             //Test av konstruktorerna så undantag kastas då fel värden tilldelas
+            ViewTestHeader("Test 7.");
+            ViewTestHeader("Testar om det kastas undantag när konstruktorn får fel värden");
+            Console.WriteLine();
             try 
             {
-                ViewTestHeader("Test 7.");
-                ViewTestHeader("Testar om det kastas undantag när konstruktorn får fel värden");
-                Console.WriteLine();
-		        myAlarm = new AlarmClock(24, 60, -1, -1);
-                if (myAlarm.Hour < 0 || myAlarm.Hour > 23){
+                myAlarm = new AlarmClock(24, 0, 0, 0);
+                if (myAlarm.Hour < 0 || myAlarm.Hour > 23)
+                {
                     ViewErrorMessage("Timmen är utanför intervallet 0-23!");
                 }
-                else if (myAlarm.AlarmHour < 0 || myAlarm.AlarmHour > 23)
+                 else
                 {
-                    ViewErrorMessage("AlarmTimmen är utanför intervallet 0-23!");
+                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (Timmen)");
                 }
-                else if (myAlarm.Minute < 0 || myAlarm.Minute > 23)
+            }
+            catch
+            {
+                ViewTestHeader("Undantag kastades då timmen sattes utanför intervallet...");
+            }
+            try
+            {
+                myAlarm = new AlarmClock(0, 60, 0, 0);
+                if (myAlarm.Minute < 0 || myAlarm.Minute > 59)
                 {
-                    ViewErrorMessage("Minuten är utanför intervallet 0-23!");
+                    ViewErrorMessage("Minuten är untanför intervallet!");
                 }
-                else if (myAlarm.AlarmMinute < 0 || myAlarm.AlarmMinute > 23)
-                {
-                    ViewErrorMessage("AlarmMinuten är utanför intervallet 0-23!");
+                else{
+                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (Minuten)");
                 }
-                else
-                {
-                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar!");
-                }
-                return;
-
             }
             catch 
             {
-		
-	            ViewTestHeader("Ett undantag kastas då olika fält tilldelas fel värden...");
+                ViewTestHeader("Undantag kastades då minuten sattes utanför intervallet...");
+            }
+            try 
+            {	        
+
+		        myAlarm = new AlarmClock(0,0,-1,0);
+                if (myAlarm.AlarmHour < 0 || myAlarm.AlarmHour > 23)
+                {
+                    ViewErrorMessage("AlarmTimmen är utanför intervallet!");
+                }
+                else
+                {
+                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (AlarmTimmen)");
+                }
+            }
+            catch 
+            {
+                ViewTestHeader("Undantag kastades då alarmtimmen sattes utanför intervallet...");
+            }
+            try
+            {
+                myAlarm = new AlarmClock(0, 0, 0, -1);
+                if (myAlarm.AlarmMinute < 0 || myAlarm.AlarmMinute > 59)
+                {
+                    ViewErrorMessage("AlarmMinuten är utanför intervallet!");
+
+                }
+                else
+                {
+                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (AlarmMinuten)");
+                }
+            }
+            catch 
+            {
+
+                ViewTestHeader("Undantag kastades då alarmminuten sattes utanför intervallet...");
             }
 
             ViewTestHeader("Färdigtestat!");
@@ -287,7 +323,7 @@ namespace AlarmClock
             bool startAlarm = false;
 
             //visa titel
-            Console.BackgroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("──────────────────────────────────────────────────────────────");
             Console.WriteLine("────────────────Klocka──────Version─1.0───────────────────────");
             Console.WriteLine("──────────────────────────────────────────────────────────────");
@@ -299,7 +335,7 @@ namespace AlarmClock
                 if (startAlarm)
                 {
                     Console.BackgroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("{0}  BEEP! BEEP! BEEP!", ac.ToString());
+                    Console.WriteLine("{0}  ♫ BEEP! ♫ ♫ BEEP! ♫ ♫ BEEP! ♫", ac.ToString());
                     Console.ResetColor();
                 }
                 else

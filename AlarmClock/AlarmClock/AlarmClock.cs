@@ -58,7 +58,7 @@ namespace AlarmClock
             get { return _hour;}
             set
             {
-                if (CheckHour(value) == false)
+                if (!CheckHour(value))
                 {
                     throw new ArgumentException();
                 }
@@ -81,6 +81,7 @@ namespace AlarmClock
         private bool CheckHour(int hour)
         {
             //Kontrollerar intervallen på timmen...
+           // return !(hour < 0 || hour > 23);
             if (hour < 0 || hour > 23)
             {
                 return false;

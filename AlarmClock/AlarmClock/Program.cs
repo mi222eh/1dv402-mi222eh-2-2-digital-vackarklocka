@@ -230,6 +230,7 @@ namespace AlarmClock
             Console.WriteLine();
             try 
             {
+                //Testar timmen
                 myAlarm = new AlarmClock(24, 0, 0, 0);
                 if (myAlarm.Hour < 0 || myAlarm.Hour > 23)
                 {
@@ -237,7 +238,7 @@ namespace AlarmClock
                 }
                  else
                 {
-                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (Timmen)");
+                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (Första parametern)");
                 }
             }
             catch
@@ -246,13 +247,14 @@ namespace AlarmClock
             }
             try
             {
+                //Testar minuten
                 myAlarm = new AlarmClock(0, 60, 0, 0);
                 if (myAlarm.Minute < 0 || myAlarm.Minute > 59)
                 {
                     ViewErrorMessage("Minuten är untanför intervallet!");
                 }
                 else{
-                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (Minuten)");
+                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (Andra parametern)");
                 }
             }
             catch 
@@ -261,7 +263,7 @@ namespace AlarmClock
             }
             try 
             {	        
-
+                //Testar alarmtimmen
 		        myAlarm = new AlarmClock(0,0,-1,0);
                 if (myAlarm.AlarmHour < 0 || myAlarm.AlarmHour > 23)
                 {
@@ -269,7 +271,7 @@ namespace AlarmClock
                 }
                 else
                 {
-                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (AlarmTimmen)");
+                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (Tredje parametern)");
                 }
             }
             catch 
@@ -278,6 +280,7 @@ namespace AlarmClock
             }
             try
             {
+                //Testar alarmminuten
                 myAlarm = new AlarmClock(0, 0, 0, -1);
                 if (myAlarm.AlarmMinute < 0 || myAlarm.AlarmMinute > 59)
                 {
@@ -286,7 +289,7 @@ namespace AlarmClock
                 }
                 else
                 {
-                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (AlarmMinuten)");
+                    ViewErrorMessage("Det är något konstigt med konstruktorn med fyra parametrar! (Fjärde parametern)");
                 }
             }
             catch 

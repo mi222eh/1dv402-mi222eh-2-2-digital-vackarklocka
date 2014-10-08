@@ -145,7 +145,7 @@ namespace AlarmClock
                      if (testAlarm == true)
                      {
                          Console.BackgroundColor = ConsoleColor.Blue;
-                         Console.WriteLine("{0}     ♪♫Beep!♫♪ ♫♫♪♪Beep!♪♪♪", showTestTime);
+                         Console.WriteLine("{0}   ♫ Beep!♫  ♫ Beep!♫", showTestTime);
                          Console.ResetColor();
                      }
                      else

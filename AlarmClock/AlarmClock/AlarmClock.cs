@@ -96,7 +96,7 @@ namespace AlarmClock
             }
             return true;
         }
-        public string ToString()
+        public override string ToString()
         {
             //deklarera variabel till strängen
             string timeToText;  
